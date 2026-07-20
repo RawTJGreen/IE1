@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stocks & Buying Your First Slice — PACT</title>
+<style>
+  :root{
+    --bg:#0f1720; --card:#182430; --card2:#1e2c3a; --line:#2b3b4c;
+    --txt:#e8eef4; --muted:#93a4b5; --accent:#4ea1ff; --accent2:#2b6fbf;
+    --green:#2ecc71; --red:#ff5c6c; --chip:#22303e; --gold:#ffc861;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(160deg,#0f1720,#132030);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;padding:0 0 40px;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px}
+  .sandboxwrap{max-width:980px;margin:0 auto;padding:0 18px}
+  /* hero */
+  header{text-align:center;padding:46px 18px 26px}
+  header .kicker{color:var(--accent);font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+  header h1{font-size:34px;margin:8px 0 8px;letter-spacing:-.5px;line-height:1.15}
+  header p{color:var(--muted);font-size:16px;max-width:560px;margin:0 auto}
+  .practice{display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:20px;padding:6px 14px;font-size:12.5px;color:var(--muted);margin-top:16px}
+  /* lesson */
+  section.lesson{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:24px 26px;margin:16px 0}
+  section.lesson h2{font-size:21px;margin:0 0 4px;letter-spacing:-.2px}
+  section.lesson .num{color:var(--accent);font-weight:700;margin-right:8px}
+  section.lesson p{font-size:15.5px;margin:12px 0}
+  section.lesson ul{margin:12px 0;padding-left:20px}
+  section.lesson li{margin:7px 0;font-size:15.5px}
+  .callout{background:var(--card2);border-left:3px solid var(--accent);border-radius:8px;
+    padding:12px 15px;margin:16px 0;font-size:14.5px;color:#cdd9e5}
+  .ex{background:var(--card2);border:1px dashed var(--line);border-radius:12px;padding:14px 16px;margin:16px 0}
+  .ex .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--gold);font-weight:700}
+  .ex p{margin:8px 0 0;font-size:14.5px;color:#dbe5ee}
+  /* clickable term */
+  .term{color:var(--accent);border-bottom:1px dotted var(--accent);cursor:pointer;font-weight:500}
+  .term:hover{background:rgba(78,161,255,.12)}
+  /* glossary popover */
+  #pop{position:absolute;z-index:50;max-width:300px;background:#0d1b28;border:1px solid var(--accent);
+    border-radius:12px;padding:14px 16px;box-shadow:0 12px 40px rgba(0,0,0,.55);display:none}
+  #pop h4{margin:0 0 6px;font-size:15px;color:var(--accent);text-transform:capitalize}
+  #pop .d{font-size:13.5px;margin:0 0 8px}
+  #pop .pl{font-size:12.5px;color:var(--muted)}
+  #pop .x{position:absolute;top:8px;right:11px;color:var(--muted);cursor:pointer;font-size:16px}
+  .divider{text-align:center;margin:40px 0 8px;color:var(--muted);font-size:13px;letter-spacing:2px;text-transform:uppercase}
+  /* ---------- sandbox styles ---------- */
+  .topbar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .wallet{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 18px;flex:1;min-width:140px}
+  .wallet .label{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+  .wallet .val{font-size:22px;font-weight:600;margin-top:2px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:780px){.grid{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .panel h3{font-size:13px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin:0 0 12px;font-weight:600}
+  input[type=text],input[type=number]{width:100%;background:var(--card2);border:1px solid var(--line);
+    border-radius:10px;color:var(--txt);padding:11px 13px;font-size:15px;outline:none}
+  input:focus{border-color:var(--accent)}
+  .results{margin-top:8px;max-height:230px;overflow:auto}
+  .res{display:flex;align-items:center;gap:11px;padding:9px;border-radius:10px;cursor:pointer}
+  .res:hover{background:var(--card2)}
+  .res img{width:30px;height:30px;border-radius:7px;background:#fff;object-fit:contain;padding:2px}
+  .res .nm{font-size:14px;font-weight:500}.res .tk{font-size:12px;color:var(--muted)}
+  .res .pr{margin-left:auto;font-size:13.5px;font-weight:600}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .chip{background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:5px 11px;font-size:12.5px;cursor:pointer;color:var(--muted)}
+  .chip:hover{color:var(--txt);border-color:var(--accent)}
+  .cc-head{display:flex;align-items:center;gap:13px}
+  .cc-head img{width:46px;height:46px;border-radius:10px;background:#fff;object-fit:contain;padding:4px}
+  .cc-name{font-size:18px;font-weight:600}.cc-tick{font-size:12.5px;color:var(--muted)}
+  .cc-price{font-size:30px;font-weight:700;margin:12px 0 2px}
+  .cc-chg{font-size:14px;font-weight:600}
+  .up{color:var(--green)}.down{color:var(--red)}
+  .cc-desc{font-size:13.5px;color:var(--muted);line-height:1.5;margin:12px 0}
+  .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .meta div{background:var(--card2);border-radius:9px;padding:8px 10px}
+  .meta .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+  .meta .v{font-size:13.5px;font-weight:600;margin-top:2px}
+  .asof{font-size:11px;color:var(--muted);margin-top:9px}
+  .toggle{display:flex;background:var(--card2);border-radius:9px;padding:3px;margin-bottom:11px;width:fit-content}
+  .toggle button{background:none;border:none;color:var(--muted);padding:6px 13px;font-size:12.5px;border-radius:7px;cursor:pointer}
+  .toggle button.on{background:var(--accent2);color:#fff}
+  .preview{font-size:13px;color:var(--muted);margin-top:9px;min-height:18px}
+  .preview b{color:var(--txt)}
+  .btn{background:var(--accent);color:#04121f;border:none;border-radius:10px;padding:12px 16px;font-size:15px;font-weight:600;cursor:pointer;width:100%;margin-top:12px}
+  .btn:hover{background:#67b0ff}.btn:disabled{background:#3a4b5c;color:#8296a8;cursor:not-allowed}
+  .msg{font-size:12.5px;margin-top:8px;min-height:16px}
+  .msg.err{color:var(--red)}.msg.ok{color:var(--green)}
+  .hold{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .hold:last-child{border-bottom:none}
+  .hold img{width:28px;height:28px;border-radius:7px;background:#fff;object-fit:contain;padding:2px}
+  .hold .hn{font-size:13.5px;font-weight:600}.hold .hs{font-size:11.5px;color:var(--muted)}
+  .hold .hv{margin-left:auto;text-align:right}
+  .hold .hv .val{font-size:13.5px;font-weight:600}.hold .hv .g{font-size:11.5px}
+  .empty{color:var(--muted);font-size:13px;text-align:center;padding:22px 0}
+  .totals{display:flex;justify-content:space-between;margin-top:14px;padding-top:13px;border-top:1px solid var(--line);font-size:14px}
+  .totals .big{font-size:19px;font-weight:700}
+  .bottombar{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn2{background:var(--chip);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:10px 15px;font-size:13px;cursor:pointer}
+  .btn2:hover{border-color:var(--accent)}
+  .foot{font-size:11.5px;color:var(--muted);margin:26px auto 0;line-height:1.6;text-align:center;max-width:600px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">PACT · Lesson 3</div>
+  <h1>Stocks & Buying Your First Slice</h1>
+  <p>What a stock really is, how a brokerage works, and how you can start owning real companies with just a few dollars.</p>
+  <div class="practice">🎓 Tap any <span style="color:var(--accent)">blue underlined word</span> for a plain-English definition.</div>
+</header>
+
+<div class="wrap">
+
+  <section class="lesson">
+    <h2><span class="num">1</span>What is a stock?</h2>
+    <p>A <span class="term" data-t="stock">stock</span> is a tiny piece of ownership in a real company. When you buy one <span class="term" data-t="share">share</span>, you literally own a small slice of it — you become a part-owner, not just a customer.</p>
+    <p>Think about the brands you already use: the phone in your hand, the shoes on your feet, the app you opened this morning. A lot of those are <span class="term" data-t="publicly traded">publicly traded</span>, which means anyone — including you — can own a piece.</p>
+    <p><b>Two ways a stock can make you money:</b></p>
+    <ul>
+      <li><span class="term" data-t="price appreciation">Price appreciation</span> — the share becomes worth more than you paid. Buy a slice at $50, it grows to $80, that's $30 of gain.</li>
+      <li><span class="term" data-t="dividend">Dividends</span> — some companies pay owners a small share of profits just for holding the stock.</li>
+    </ul>
+    <div class="callout">Prices go up <i>and</i> down — that's normal, and it's not something you control. What you <b>do</b> control is showing up consistently and owning good companies for a long time. That's the whole game.</div>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">2</span>What is a brokerage?</h2>
+    <p>You can't just walk up to a company and hand them $50 for a share. You need a middleman that connects you to the stock market — that's a <span class="term" data-t="brokerage">brokerage</span> (also called a broker).</p>
+    <p>When you open a <span class="term" data-t="brokerage account">brokerage account</span>, think of it like a bank account with a superpower: money you put in can be turned into shares of companies. Popular ones: Fidelity, Charles Schwab, Robinhood, SoFi, Public, Webull.</p>
+    <p>Most good brokerages today charge <b>$0</b> <span class="term" data-t="commission">commission</span> — no fee every time you buy or sell a U.S. stock. That wasn't true 10 years ago; this is a great time to be starting.</p>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">3</span>Opening an account (the teen rule)</h2>
+    <p>Important if you're under 18: in the U.S. you usually can't open a regular brokerage account by yourself until you're 18. That's the law, not the app being difficult. You have two normal paths:</p>
+    <ul>
+      <li>A <span class="term" data-t="teen account">teen account</span> — some brokerages (like the Fidelity Youth Account) let a teen aged 13–17 own and control the account, with a parent connected.</li>
+      <li>A <span class="term" data-t="custodial account">custodial account</span> (<span class="term" data-t="ugma/utma">UGMA/UTMA</span>) — a parent holds the account <i>for</i> you until you're an adult, then it becomes fully yours. Apps like Greenlight and Acorns Early work this way.</li>
+    </ul>
+    <p>To open one you'll generally need a parent/guardian involved, basic personal info, a linked bank account, and a few minutes. No test to pass, and usually no minimum amount.</p>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">4</span>How you actually buy a share</h2>
+    <p>Once your account has money in it, buying is a few taps:</p>
+    <ul>
+      <li>Search the company by its <span class="term" data-t="ticker symbol">ticker symbol</span> — Apple is <code>AAPL</code>, Nike is <code>NKE</code>.</li>
+      <li>Choose how much — a number of shares <i>or</i> a dollar amount.</li>
+      <li>Pick a <span class="term" data-t="market order">market order</span> ("buy it now at the current price"). There's a fancier <span class="term" data-t="limit order">limit order</span> too, but you don't need it yet.</li>
+      <li>Review and confirm — you're now an owner.</li>
+    </ul>
+    <div class="ex"><div class="lbl">Example · illustrative numbers</div>
+      <p>Maya has $60 saved. A share of a company she likes trades at <b>$50</b>. She searches the ticker, places a market order for 1 share, and confirms. $50 leaves her cash, 1 share appears in her account, $10 left over. If that share climbs to $65, her slice is now worth $65 — a $15 gain for just holding it.</p></div>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">5</span>What if one share costs more than you have?</h2>
+    <p>Some great companies cost a lot per share — $200, $500, even more. If you've got $25, are you locked out? Not anymore. The fix is a <span class="term" data-t="fractional share">fractional share</span> (also "partial share" or "stock slice").</p>
+    <p>It lets you buy a <i>piece</i> of a share using a dollar amount — that's <span class="term" data-t="dollar-based investing">dollar-based investing</span>. Instead of "buy 1 share," you say "buy $10 worth," and you get whatever fraction that equals.</p>
+    <div class="ex"><div class="lbl">Example · illustrative numbers</div>
+      <p>A share costs <b>$500</b>. Maya puts in <b>$25</b> → she owns <b>0.05 of a share</b>. If that $500 share rises 10% to $550, her $25 slice rises 10% too, to $27.50. Same growth, smaller size.</p></div>
+    <div class="callout">This is why your first investment can be <b>$5, not $500</b>. Start small, stay consistent, own the exact companies you actually want.</div>
+  </section>
+
+  <div class="divider">— Now try it yourself —</div>
+</div>
+
+<!-- ================= SANDBOX ================= -->
+<div class="sandboxwrap">
+  <header style="padding:14px 0 20px">
+    <h1 style="font-size:26px">Buy a Slice 🍕</h1>
+    <p style="font-size:15px">Search a real company, buy a fractional share with $100 of practice money, and watch what happens.</p>
+  </header>
+
+  <div class="topbar">
+    <div class="wallet"><div class="label">Cash to invest</div><div class="val" id="cash">$100.00</div></div>
+    <div class="wallet"><div class="label">Portfolio value</div><div class="val" id="pval">$100.00</div></div>
+    <div class="wallet"><div class="label">Total gain / loss</div><div class="val" id="tgain">$0.00</div></div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="panel">
+        <h3>1 · Find a company</h3>
+        <input type="text" id="search" placeholder="Search Apple, Nike, Roblox…" autocomplete="off">
+        <div class="chips" id="chips"></div>
+        <div class="results" id="results"></div>
+      </div>
+      <div class="panel" id="cardPanel" style="margin-top:18px;display:none">
+        <h3>2 · The company</h3><div id="card"></div>
+      </div>
+    </div>
+    <div>
+      <div class="panel" id="buyPanel" style="display:none">
+        <h3>3 · Buy a slice</h3>
+        <div class="toggle">
+          <button id="tgDollar" class="on" onclick="setMode('dollar')">By dollars</button>
+          <button id="tgShares" onclick="setMode('shares')">By shares</button>
+        </div>
+        <div id="buyInner"></div>
+        <div class="preview" id="preview"></div>
+        <button class="btn" id="buyBtn" onclick="buy()">Buy</button>
+        <div class="msg" id="msg"></div>
+      </div>
+      <div class="panel" style="margin-top:18px">
+        <h3>Your holdings</h3>
+        <div id="holdings"><div class="empty">Nothing yet — buy your first slice!</div></div>
+        <div class="totals" style="display:none" id="totalsRow">
+          <div>Invested<br><span id="tInvested" class="big">$0</span></div>
+          <div style="text-align:right">Worth now<br><span id="tWorth" class="big">$0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottombar">
+    <button class="btn2" onclick="simulate()">📈 Simulate a day (prices move)</button>
+    <button class="btn2" onclick="resetAll()">↺ Reset sandbox</button>
+  </div>
+</div>
+
+<div class="foot">
+  Educational prototype for PACT · simulated money · real delayed market snapshot (~Jul 2026) · <b>not financial advice</b>, and this isn't a recommendation to buy any stock.<br>
+  Investing involves risk, including possibly losing money. If you're under 18, open any real account with a parent or guardian. The finished app uses live data.
+</div>
+
+<div id="pop"><span class="x" onclick="hidePop()">×</span><h4 id="popT"></h4><div class="d" id="popD"></div><div class="pl" id="popP"></div></div>
+
+<script>
+// ---------- Glossary ----------
+const GLOSS={
+ "stock":{d:"A piece of ownership in a company, split into shares.",p:"Own a company's stock and you own a small part of the actual business — not just its products."},
+ "share":{d:"One single unit of a stock.",p:"If a stock is a pizza, a share is one slice."},
+ "publicly traded":{d:"A company whose shares anyone can buy or sell on the stock market.",p:"Apple and Nike are 'public.' Many companies are private — you can't buy in."},
+ "price appreciation":{d:"When a share becomes worth more than you paid.",p:"Buy at $50, it grows to $80 — that $30 is appreciation. You lock it in only if you sell."},
+ "dividend":{d:"A small share of a company's profits paid to its owners.",p:"Some companies send owners a little cash every few months. Not every company pays one."},
+ "brokerage":{d:"A company that holds your money and places your buy/sell orders.",p:"The app/company that connects you to the market — Fidelity, Robinhood, Schwab."},
+ "brokerage account":{d:"The account where your cash and investments live.",p:"Like a bank account with a superpower: money inside can become shares."},
+ "commission":{d:"A fee a brokerage charges each time you buy or sell.",p:"Most big brokerages now charge $0 on U.S. stocks, so trading is free."},
+ "custodial account":{d:"An account a parent legally holds for a minor until they're an adult.",p:"A grown-up manages it now; it becomes fully yours when you're old enough."},
+ "ugma/utma":{d:"The two legal formats for custodial accounts.",p:"Official names for 'an account an adult holds for a kid.' You don't need to memorize the letters."},
+ "teen account":{d:"A brokerage account a teen (13–17) owns and controls, with a parent connected.",p:"You make the moves; a parent can see the account. The Fidelity Youth Account is one."},
+ "ticker symbol":{d:"The short letter code that identifies a stock.",p:"Apple = AAPL, Nike = NKE. You search this to find a stock."},
+ "market order":{d:"An order to buy or sell right now at the current price.",p:"The beginner default — 'get me this stock at whatever it costs this second.'"},
+ "limit order":{d:"An order to buy or sell only at a price you set.",p:"'Only buy if it drops to $45.' More control, but you might wait. Not needed as a beginner."},
+ "fractional share":{d:"A piece of a single share, bought with a dollar amount.",p:"$25 into a $500 share = 0.05 of a share. Same company, smaller slice."},
+ "dollar-based investing":{d:"Buying by dollar amount instead of by number of shares.",p:"You pick how much money to put in; the brokerage figures out the fraction."}
+};
+const pop=document.getElementById("pop");
+document.addEventListener("click",e=>{
+  const t=e.target.closest(".term");
+  if(t){const key=t.dataset.t.toLowerCase();const g=GLOSS[key];if(g){
+    document.getElementById("popT").textContent=t.textContent;
+    document.getElementById("popD").textContent=g.d;
+    document.getElementById("popP").textContent="In plain terms: "+g.p;
+    pop.style.display="block";
+    const r=t.getBoundingClientRect();
+    let top=r.bottom+window.scrollY+8, left=r.left+window.scrollX;
+    left=Math.min(left,window.scrollX+window.innerWidth-320);
+    pop.style.top=top+"px";pop.style.left=Math.max(10,left)+"px";
+    e.stopPropagation();return;}}
+  if(!e.target.closest("#pop"))hidePop();
+});
+function hidePop(){pop.style.display="none";}
+
+// ---------- Real snapshot data (FMP, ~Jul 2026) ----------
+const STOCKS=[
+ {s:"AAPL",n:"Apple Inc.",p:333.74,ch:0.48,cp:0.144,mc:4901758191440,lo:201.5,hi:334.99,sec:"Technology",div:1.05,img:"https://images.financialmodelingprep.com/symbol/AAPL.png",d:"iPhone, Mac, iPad, and the App Store."},
+ {s:"MSFT",n:"Microsoft Corporation",p:393.82,ch:-7.28,cp:-1.815,mc:2925464302600,lo:349.2,hi:555.45,sec:"Technology",div:3.56,img:"https://images.financialmodelingprep.com/symbol/MSFT.png",d:"Windows, Xbox, Office, and Azure cloud."},
+ {s:"GOOGL",n:"Alphabet (Google)",p:346.77,ch:-7.69,cp:-2.17,mc:4194138171504,lo:186.15,hi:408.61,sec:"Communication Services",div:0.85,img:"https://images.financialmodelingprep.com/symbol/GOOGL.png",d:"Google Search, YouTube, Android, and Gmail."},
+ {s:"AMZN",n:"Amazon.com, Inc.",p:247.23,ch:-2.66,cp:-1.064,mc:2659477833000,lo:196,hi:278.56,sec:"Consumer Cyclical",div:0,img:"https://images.financialmodelingprep.com/symbol/AMZN.png",d:"Online shopping, Prime, and AWS cloud."},
+ {s:"TSLA",n:"Tesla, Inc.",p:380.84,ch:-10.22,cp:-2.613,mc:1430328404800,lo:297.82,hi:498.83,sec:"Consumer Cyclical",div:0,img:"https://images.financialmodelingprep.com/symbol/TSLA.png",d:"Electric cars and energy storage."},
+ {s:"NVDA",n:"NVIDIA Corporation",p:202.81,ch:-4.59,cp:-2.213,mc:4912261010000,lo:164.07,hi:236.54,sec:"Technology",div:0.28,img:"https://images.financialmodelingprep.com/symbol/NVDA.png",d:"The chips (GPUs) behind gaming and AI."},
+ {s:"NFLX",n:"Netflix, Inc.",p:68.95,ch:-5.4,cp:-7.263,mc:290334660000,lo:65.08,hi:126.71,sec:"Communication Services",div:0,img:"https://images.financialmodelingprep.com/symbol/NFLX.png",d:"Streaming movies, shows, and games."},
+ {s:"NKE",n:"NIKE, Inc.",p:43.76,ch:-0.81,cp:-1.817,mc:64756539206,lo:40,hi:80.17,sec:"Consumer Cyclical",div:1.63,img:"https://images.financialmodelingprep.com/symbol/NKE.png",d:"Sneakers, apparel, and the Jordan brand."},
+ {s:"DIS",n:"The Walt Disney Company",p:97.67,ch:-2.04,cp:-2.046,mc:169605070782,lo:92.19,hi:123.4,sec:"Communication Services",div:1.5,img:"https://images.financialmodelingprep.com/symbol/DIS.png",d:"Disney+, ESPN, Marvel, Pixar, and theme parks."},
+ {s:"SBUX",n:"Starbucks Corporation",p:105.49,ch:-2.88,cp:-2.658,mc:120226953000,lo:77.99,hi:109.23,sec:"Consumer Cyclical",div:2.47,img:"https://images.financialmodelingprep.com/symbol/SBUX.png",d:"Coffee and cafés worldwide."},
+ {s:"KO",n:"The Coca-Cola Company",p:81.56,ch:-3.36,cp:-3.957,mc:350910268800,lo:65.35,hi:85.68,sec:"Consumer Defensive",div:2.08,img:"https://images.financialmodelingprep.com/symbol/KO.png",d:"Coca-Cola, Sprite, Fanta, and more."},
+ {s:"MCD",n:"McDonald's Corporation",p:267.71,ch:-5.75,cp:-2.103,mc:190209561260,lo:264.09,hi:341.75,sec:"Consumer Cyclical",div:7.35,img:"https://images.financialmodelingprep.com/symbol/MCD.png",d:"The world's biggest fast-food chain."},
+ {s:"SPOT",n:"Spotify Technology",p:478.14,ch:2.06,cp:0.433,mc:98315175967,lo:405,hi:748.3,sec:"Communication Services",div:0,img:"https://images.financialmodelingprep.com/symbol/SPOT.png",d:"Music and podcast streaming."},
+ {s:"RBLX",n:"Roblox Corporation",p:51.68,ch:-2.33,cp:-4.314,mc:37001780146,lo:40.15,hi:150.59,sec:"Technology",div:0,img:"https://images.financialmodelingprep.com/symbol/RBLX.png",d:"The Roblox game platform."},
+ {s:"CMG",n:"Chipotle Mexican Grill",p:34.44,ch:0.24,cp:0.702,mc:44177358960,lo:28.04,hi:54.2,sec:"Consumer Cyclical",div:0,img:"https://images.financialmodelingprep.com/symbol/CMG.png",d:"Chipotle burritos and bowls."}
+];
+const FEATURED=["AAPL","TSLA","RBLX","NKE","SPOT","NVDA"];
+
+let cash=100,holdings={},drift={},selected=null,mode="dollar";
+const $=id=>document.getElementById(id);
+const money=v=>"$"+v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const bigMoney=v=>v>=1e12?"$"+(v/1e12).toFixed(2)+"T":v>=1e9?"$"+(v/1e9).toFixed(1)+"B":v>=1e6?"$"+(v/1e6).toFixed(0)+"M":"$"+v.toFixed(0);
+const priceOf=st=>+(st.p*(1+(drift[st.s]||0))).toFixed(2);
+const find=sym=>STOCKS.find(x=>x.s===sym);
+
+function renderChips(){$("chips").innerHTML=FEATURED.map(s=>`<span class="chip" onclick="select('${s}')">${s}</span>`).join("");}
+let searchTimer=null;
+$("search").addEventListener("input",e=>{clearTimeout(searchTimer);const v=e.target.value;searchTimer=setTimeout(()=>runSearch(v),250);});
+function runSearch(q){q=q.trim().toLowerCase();const box=$("results");if(!q){box.innerHTML="";return;}
+  const hits=STOCKS.filter(x=>x.n.toLowerCase().includes(q)||x.s.toLowerCase().includes(q)).slice(0,8);
+  if(!hits.length){box.innerHTML=`<div class="empty">No US company matches "${q}". Try Apple, Nike, Tesla…</div>`;return;}
+  box.innerHTML=hits.map(st=>`<div class="res" onclick="select('${st.s}')"><img src="${st.img}" alt=""><div><div class="nm">${st.n}</div><div class="tk">${st.s}</div></div><div class="pr">${money(priceOf(st))}</div></div>`).join("");}
+
+function select(sym){selected=sym;const st=find(sym),pr=priceOf(st),up=st.ch>=0;
+  const sizeLbl=st.mc>=1e12?"Mega company":st.mc>=2e11?"Very large":st.mc>=1e10?"Large":"Mid-size";
+  $("card").innerHTML=`<div class="cc-head"><img src="${st.img}" alt=""><div><div class="cc-name">${st.n}</div><div class="cc-tick">${st.s} · ${st.sec}</div></div></div>
+    <div class="cc-price">${money(pr)}</div>
+    <div class="cc-chg ${up?'up':'down'}">${up?'▲':'▼'} ${money(Math.abs(st.ch))} (${st.cp.toFixed(2)}%) today</div>
+    <div class="cc-desc">${st.d}</div>
+    <div class="meta">
+      <div><div class="k">52-week range</div><div class="v">${money(st.lo)} – ${money(st.hi)}</div></div>
+      <div><div class="k">Company size</div><div class="v">${bigMoney(st.mc)} · ${sizeLbl}</div></div>
+      <div><div class="k">Dividend / share / yr</div><div class="v">${st.div?money(st.div):"None"}</div></div>
+      <div><div class="k">You own</div><div class="v">${holdings[sym]?holdings[sym].shares.toFixed(4)+" sh":"—"}</div></div>
+    </div>
+    <div class="asof">📸 Real snapshot price (delayed). Live in the finished app.</div>`;
+  $("cardPanel").style.display="block";$("buyPanel").style.display="block";renderBuy();}
+
+function setMode(m){mode=m;$("tgDollar").classList.toggle("on",m==="dollar");$("tgShares").classList.toggle("on",m==="shares");renderBuy();}
+function renderBuy(){
+  $("buyInner").innerHTML= mode==="dollar"
+    ? `<input type="number" id="amt" min="1" step="1" placeholder="How many dollars? (min $1)" oninput="preview()">`
+    : `<input type="number" id="amt" min="0" step="0.001" placeholder="How many shares? (e.g. 0.5)" oninput="preview()">`;
+  $("preview").innerHTML="";$("msg").innerHTML="";preview();}
+function preview(){const st=find(selected),pr=priceOf(st);const v=parseFloat(($("amt")||{}).value);
+  if(!v||v<=0){$("preview").innerHTML="";return;}
+  $("preview").innerHTML= mode==="dollar"
+    ? `≈ <b>${(v/pr).toFixed(4)} shares</b> of ${st.s} at ${money(pr)}`
+    : `≈ <b>${money(v*pr)}</b> for ${v} shares of ${st.s}`;}
+function buy(){const st=find(selected),pr=priceOf(st);const v=parseFloat(($("amt")||{}).value);const msg=$("msg");
+  if(!v||v<=0){msg.className="msg err";msg.textContent="Enter an amount first.";return;}
+  let dollars=mode==="dollar"?v:v*pr;
+  if(mode==="dollar"&&v<1){msg.className="msg err";msg.textContent="Minimum buy is $1 (just like real brokerages).";return;}
+  if(dollars>cash+0.001){msg.className="msg err";msg.textContent=`That's ${money(dollars)}, but you only have ${money(cash)}. Try a smaller amount.`;return;}
+  const shares=dollars/pr;cash-=dollars;
+  if(!holdings[selected])holdings[selected]={shares:0,invested:0};
+  holdings[selected].shares+=shares;holdings[selected].invested+=dollars;
+  msg.className="msg ok";msg.textContent=`Bought ${shares.toFixed(4)} shares of ${st.s} for ${money(dollars)}. You're an owner! 🎉`;
+  ($("amt")||{}).value="";$("preview").innerHTML="";render();select(selected);}
+
+function render(){$("cash").textContent=money(cash);const box=$("holdings");const syms=Object.keys(holdings);let invested=0,worth=0;
+  if(!syms.length){box.innerHTML=`<div class="empty">Nothing yet — buy your first slice!</div>`;$("totalsRow").style.display="none";}
+  else{box.innerHTML=syms.map(sym=>{const st=find(sym),pr=priceOf(st),h=holdings[sym];
+    const val=h.shares*pr,g=val-h.invested,gp=h.invested?g/h.invested*100:0;invested+=h.invested;worth+=val;const up=g>=0;const divInc=h.shares*st.div;
+    return `<div class="hold"><img src="${st.img}" alt=""><div><div class="hn">${st.s}</div><div class="hs">${h.shares.toFixed(4)} sh · in ${money(h.invested)}${st.div?` · ~${money(divInc)}/yr div`:''}</div></div><div class="hv"><div class="val">${money(val)}</div><div class="g ${up?'up':'down'}">${up?'+':''}${money(g)} (${up?'+':''}${gp.toFixed(1)}%)</div></div></div>`;}).join("");
+    $("totalsRow").style.display="flex";$("tInvested").textContent=money(invested);$("tWorth").textContent=money(worth);}
+  const pval=cash+worth;$("pval").textContent=money(pval);
+  const tg=pval-100;const tgEl=$("tgain");tgEl.textContent=(tg>=0?'+':'')+money(tg);tgEl.className="val "+(tg>=0?'up':'down');}
+
+function simulate(){STOCKS.forEach(st=>{const move=(Math.random()-0.48)*0.06;drift[st.s]=(drift[st.s]||0)+move;});render();if(selected)select(selected);runSearch($("search").value);}
+function resetAll(){cash=100;holdings={};drift={};selected=null;mode="dollar";$("search").value="";$("results").innerHTML="";$("cardPanel").style.display="none";$("buyPanel").style.display="none";render();}
+
+renderChips();render();
+</script>
+</body>
+</html>
