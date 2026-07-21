@@ -44,6 +44,14 @@
   #pop h4{margin:0 0 6px;font-size:15px;color:var(--accent);text-transform:capitalize}
   #pop .d{font-size:13.5px;margin:0 0 8px}#pop .pl{font-size:12.5px;color:var(--muted)}
   #pop .x{position:absolute;top:8px;right:11px;color:var(--muted);cursor:pointer;font-size:16px}
+  .lessonjump{margin:22px auto 0;display:flex;justify-content:space-between;gap:10px}
+  .lessonjump a{flex:1;max-width:340px;text-align:center;background:#22303e;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--txt);text-decoration:none;font-size:13.5px;font-weight:600}
+  .lessonjump a:hover{border-color:var(--accent)}
+  .lessonjump a.primary{background:var(--accent);color:#04121f;border-color:var(--accent)}
+  .lessonjump .spacer{flex:1}
+  .disclaimer{margin:24px auto 0;padding:14px 16px;background:#141f2b;border:1px solid var(--line);border-radius:12px;font-size:12px;color:var(--muted);line-height:1.6;text-align:center}
+  .disclaimer b{color:var(--gold)}
+  .datanote{margin:20px auto 0;font-size:11.5px;color:var(--muted);text-align:center}
 </style>
 </head>
 <body>
@@ -115,10 +123,10 @@
     <p>This is the reason saving and investing exist. If cash quietly loses value, the goal isn't to hoard dollars — it's to put your money somewhere it can at least <i>keep up with</i> (or beat) inflation.</p>
     <p>That's exactly what the next lessons are about: where people store value so it doesn't melt away, and how you can start doing it too — even with a few dollars.</p>
     <div class="callout">Big takeaway: <b>money is a tool built on trust and scarcity, and it slowly loses value if it just sits there.</b> What you do with it next is where the real game begins.</div>
-    <a class="next" href="lesson2.html">Next → Lesson 2: Stores of Value</a>
   </section>
 
-  <div class="foot">Educational only — not financial advice. Numbers shown are illustrative, not predictions.</div>
+  <div class="lessonjump"><span class="spacer"></span><a class="primary" href="lesson2.html">Next → Lesson 2: Stores of Value</a></div>
+  <div class="disclaimer"><b>Not financial advice.</b> This is educational content only — nothing here is a recommendation to buy or sell any specific investment. Investing involves risk, including possibly losing money, and PACT isn’t a financial advisor. If you’re under 18, open any real account together with a parent or guardian.</div>
 </div>
 
 <div id="pop"><span class="x" onclick="hidePop()">×</span><h4 id="popT"></h4><div class="d" id="popD"></div><div class="pl" id="popP"></div></div>

@@ -109,6 +109,14 @@
   .btn2{background:var(--chip);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:10px 15px;font-size:13px;cursor:pointer}
   .btn2:hover{border-color:var(--accent)}
   .foot{font-size:11.5px;color:var(--muted);margin:26px auto 0;line-height:1.6;text-align:center;max-width:600px}
+  .lessonjump{margin:22px auto 0;display:flex;justify-content:space-between;gap:10px}
+  .lessonjump a{flex:1;max-width:340px;text-align:center;background:#22303e;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--txt);text-decoration:none;font-size:13.5px;font-weight:600}
+  .lessonjump a:hover{border-color:var(--accent)}
+  .lessonjump a.primary{background:var(--accent);color:#04121f;border-color:var(--accent)}
+  .lessonjump .spacer{flex:1}
+  .disclaimer{margin:24px auto 0;padding:14px 16px;background:#141f2b;border:1px solid var(--line);border-radius:12px;font-size:12px;color:var(--muted);line-height:1.6;text-align:center}
+  .disclaimer b{color:var(--gold)}
+  .datanote{margin:20px auto 0;font-size:11.5px;color:var(--muted);text-align:center}
 </style>
 </head>
 <body>
@@ -237,9 +245,10 @@
   </div>
 </div>
 
-<div class="foot">
-  Educational prototype for PACT · simulated money · real delayed market snapshot (~Jul 2026) · <b>not financial advice</b>, and this isn't a recommendation to buy any stock.<br>
-  Investing involves risk, including possibly losing money. If you're under 18, open any real account with a parent or guardian. The finished app uses live data.
+<div class="wrap">
+  <div class="datanote">Sandbox uses simulated money and a real, delayed market snapshot (~Jul 2026). The finished app uses live data.</div>
+  <div class="lessonjump"><a href="lesson2.html">← Lesson 2: Stores of Value</a><a href="lesson1.html">↺ Restart: Lesson 1</a></div>
+  <div class="disclaimer"><b>Not financial advice.</b> This is educational content only — nothing here is a recommendation to buy or sell any specific investment. Investing involves risk, including possibly losing money, and PACT isn’t a financial advisor. If you’re under 18, open any real account together with a parent or guardian.</div>
 </div>
 
 <div id="pop"><span class="x" onclick="hidePop()">×</span><h4 id="popT"></h4><div class="d" id="popD"></div><div class="pl" id="popP"></div></div>
@@ -247,6 +256,8 @@
 <script>
 // ---------- Glossary ----------
 const GLOSS={
+ "market cap":{d:"A company's total value: share price × all its shares.",p:"How you compare company sizes — a $3 trillion company vs a $40 billion one."},
+ "52-week high/low":{d:"The highest and lowest price a stock hit in the past year.",p:"Shows the range it's traded in recently — how bouncy it's been."},
  "stock":{d:"A piece of ownership in a company, split into shares.",p:"Own a company's stock and you own a small part of the actual business — not just its products."},
  "share":{d:"One single unit of a stock.",p:"If a stock is a pizza, a share is one slice."},
  "publicly traded":{d:"A company whose shares anyone can buy or sell on the stock market.",p:"Apple and Nike are 'public.' Many companies are private — you can't buy in."},
@@ -323,9 +334,9 @@ function select(sym){selected=sym;const st=find(sym),pr=priceOf(st),up=st.ch>=0;
     <div class="cc-chg ${up?'up':'down'}">${up?'▲':'▼'} ${money(Math.abs(st.ch))} (${st.cp.toFixed(2)}%) today</div>
     <div class="cc-desc">${st.d}</div>
     <div class="meta">
-      <div><div class="k">52-week range</div><div class="v">${money(st.lo)} – ${money(st.hi)}</div></div>
-      <div><div class="k">Company size</div><div class="v">${bigMoney(st.mc)} · ${sizeLbl}</div></div>
-      <div><div class="k">Dividend / share / yr</div><div class="v">${st.div?money(st.div):"None"}</div></div>
+      <div><div class="k"><span class="term" data-t="52-week high/low">52-week range</span></div><div class="v">${money(st.lo)} – ${money(st.hi)}</div></div>
+      <div><div class="k"><span class="term" data-t="market cap">Company size</span></div><div class="v">${bigMoney(st.mc)} · ${sizeLbl}</div></div>
+      <div><div class="k"><span class="term" data-t="dividend">Dividend / share / yr</span></div><div class="v">${st.div?money(st.div):"None"}</div></div>
       <div><div class="k">You own</div><div class="v">${holdings[sym]?holdings[sym].shares.toFixed(4)+" sh":"—"}</div></div>
     </div>
     <div class="asof">📸 Real snapshot price (delayed). Live in the finished app.</div>`;
