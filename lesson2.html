@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stores of Value — PACT</title>
+<style>
+  :root{--bg:#0f1720;--card:#182430;--card2:#1e2c3a;--line:#2b3b4c;--txt:#e8eef4;--muted:#93a4b5;--accent:#4ea1ff;--gold:#ffc861;}
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(160deg,#0f1720,#132030);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;padding:0 0 40px}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px}
+  nav.lessonnav{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:14px 12px;
+    background:rgba(13,22,33,.85);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40;backdrop-filter:blur(6px)}
+  nav.lessonnav a{color:var(--muted);text-decoration:none;font-size:13px;padding:7px 13px;border-radius:20px;border:1px solid transparent}
+  nav.lessonnav a:hover{color:var(--txt);border-color:var(--line)}
+  nav.lessonnav a.active{color:#04121f;background:var(--accent);font-weight:600}
+  nav.lessonnav .brand{font-weight:700;color:var(--txt);font-size:14.5px;margin-right:auto;padding:7px 6px;letter-spacing:.3px}
+  nav.lessonnav .brand .dot{color:var(--accent)}
+  header{text-align:center;padding:40px 18px 22px}
+  header .kicker{color:var(--accent);font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+  header h1{font-size:32px;margin:8px 0 8px;letter-spacing:-.5px;line-height:1.15}
+  header p{color:var(--muted);font-size:16px;max-width:560px;margin:0 auto}
+  header .practice{display:inline-block;background:#22303e;border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:12.5px;color:var(--muted);margin-top:16px}
+  header .practice span{color:var(--accent)}
+  section.lesson{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin:16px 0}
+  section.lesson h2{font-size:21px;margin:0 0 4px;letter-spacing:-.2px}
+  section.lesson .num{color:var(--accent);font-weight:700;margin-right:8px}
+  section.lesson p{font-size:15.5px;margin:12px 0}
+  .wvr{margin:12px 0}
+  .wvr .row{display:flex;gap:10px;margin:6px 0;font-size:14.5px}
+  .wvr .tag{flex:0 0 74px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);font-weight:700;padding-top:2px}
+  .callout{background:var(--card2);border-left:3px solid var(--accent);border-radius:8px;padding:12px 15px;margin:16px 0;font-size:14.5px;color:#cdd9e5}
+  .warn{border-left-color:var(--gold)}
+  .ex{background:var(--card2);border:1px dashed var(--line);border-radius:12px;padding:14px 16px;margin:16px 0;font-size:14.5px;color:#dbe5ee}
+  .term{color:var(--accent);border-bottom:1px dotted var(--accent);cursor:pointer;font-weight:500}
+  .term:hover{background:rgba(78,161,255,.12)}
+  .next{display:block;text-align:center;background:var(--accent);color:#04121f;text-decoration:none;font-weight:600;padding:14px;border-radius:12px;margin:20px 0 0;font-size:15px}
+  .next:hover{background:#67b0ff}
+  .foot{font-size:11.5px;color:var(--muted);margin:22px auto 0;line-height:1.6;text-align:center;max-width:600px}
+  #pop{position:absolute;z-index:60;max-width:300px;background:#0d1b28;border:1px solid var(--accent);border-radius:12px;padding:14px 16px;box-shadow:0 12px 40px rgba(0,0,0,.55);display:none}
+  #pop h4{margin:0 0 6px;font-size:15px;color:var(--accent);text-transform:capitalize}
+  #pop .d{font-size:13.5px;margin:0 0 8px}#pop .pl{font-size:12.5px;color:var(--muted)}
+  #pop .x{position:absolute;top:8px;right:11px;color:var(--muted);cursor:pointer;font-size:16px}
+</style>
+</head>
+<body>
+<nav class="lessonnav">
+  <span class="brand">PACT<span class="dot">•</span></span>
+  <a href="lesson1.html">1 · Money</a>
+  <a href="lesson2.html" class="active">2 · Stores of Value</a>
+  <a href="index.html">3 · Stocks</a>
+</nav>
+
+<header>
+  <div class="kicker">PACT · Money &amp; Investing · Lesson 2</div>
+  <h1>Stores of Value</h1>
+  <p>Gold, real estate, crypto, and more — where people park their value so it doesn't melt away, and the risks of each.</p>
+  <div class="practice">🎓 Tap any <span>blue underlined word</span> for a plain-English definition.</div>
+</header>
+
+<div class="wrap">
+  <section class="lesson">
+    <h2><span class="num">1</span>What's a "store of value"?</h2>
+    <p>In Lesson 1 you learned that money slowly loses value to inflation if it just sits there. So people take their value and <i>park it</i> in things that hold their worth over time — or even grow. Anything you use this way is a <span class="term" data-t="store of value">store of value</span>.</p>
+    <p>It's just something you can put worth <i>into</i> now and reasonably expect to pull worth <i>back out</i> of later. Gold, a house, a rare pair of sneakers, a share of a company — all can act as stores of value.</p>
+    <div class="callout">Mindset shift: <b>almost anything can be "monetized"</b> — turned into something that holds and trades value. Once you see money as <i>stored value</i>, you start noticing it everywhere.</div>
+    <p>Let's walk through the big ones. For each: <b>what it is → why it holds value → the risks.</b></p>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">2</span><span class="term" data-t="precious metals">Precious metals</span> (gold, silver)</h2>
+    <div class="wvr">
+      <div class="row"><div class="tag">What</div><div>Physical metals treated as valuable for thousands of years. Gold is the classic.</div></div>
+      <div class="row"><div class="tag">Why</div><div>It's scarce, doesn't rust or rot, and is recognized worldwide. When people get nervous, many buy gold as a "safe" place to park value.</div></div>
+      <div class="row"><div class="tag">Risks</div><div>Gold doesn't <i>do</i> anything — no growth, no payments — so it can sit flat for years. Prices still swing, and storing it safely is a hassle.</div></div>
+    </div>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">3</span><span class="term" data-t="commodity">Commodities</span> (oil, wheat, copper)</h2>
+    <div class="wvr">
+      <div class="row"><div class="tag">What</div><div>Raw materials the world runs on. A commodity is a basic good that's the same no matter who makes it (a barrel of oil is a barrel of oil).</div></div>
+      <div class="row"><div class="tag">Why</div><div>People always need to eat, build, and power things — constant real-world demand.</div></div>
+      <div class="row"><div class="tag">Risks</div><div>Prices can be wild — a drought, war, or supply glut moves them fast. Usually something people <i>trade</i>, not a simple place to park savings.</div></div>
+    </div>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">4</span><span class="term" data-t="real estate">Real estate</span> (land &amp; property)</h2>
+    <div class="wvr">
+      <div class="row"><div class="tag">What</div><div>Land and the buildings on it — houses, apartments, stores.</div></div>
+      <div class="row"><div class="tag">Why</div><div>Land is limited, people always need places to live and work, and property can do two things at once: rise in value <i>and</i> earn rent.</div></div>
+      <div class="row"><div class="tag">Risks</div><div>Expensive to get into, hard to sell quickly (not <span class="term" data-t="liquidity">liquid</span>), and prices can fall. Comes with costs: taxes, repairs, insurance.</div></div>
+    </div>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">5</span><span class="term" data-t="cryptocurrency">Cryptocurrency</span></h2>
+    <div class="wvr">
+      <div class="row"><div class="tag">What</div><div>Digital money that lives on computer networks instead of being issued by a government. Bitcoin is the best known.</div></div>
+      <div class="row"><div class="tag">Why</div><div>Certain cryptos are designed to be scarce (only a set number will ever exist), can be sent anywhere digitally, and aren't controlled by one government.</div></div>
+      <div class="row"><div class="tag">Risks</div><div>This is the <span class="term" data-t="volatility">volatile</span> one — prices can rise or fall enormously fast. Newer, less predictable, rules still changing, and scams are common.</div></div>
+    </div>
+    <div class="callout warn">⚠️ Crypto gets a lot of hype online. Hype is not the same as value. The same "what is it → why value → what are the risks" checklist you're using here is exactly how to cut through it. Never put in money you can't afford to lose.</div>
+  </section>
+
+  <section class="lesson">
+    <h2><span class="num">6</span>And the star of this app: ownership</h2>
+    <p>Metals, commodities, real estate, and crypto are all ways to store value. But there's one more that's the focus of the rest of these lessons: <b>owning pieces of businesses</b> — stocks and funds.</p>
+    <p>Unlike gold sitting in a safe, a share of a company can <i>grow</i> as the business grows, and some even pay you along the way. That's why it gets its own deep dive next.</p>
+    <div class="ex"><b>Example — illustrative idea.</b><br>
+      Picture $100 split four ways: a bit in gold (steady but flat), a bit in a rental property (earns rent, hard to sell fast), a bit in crypto (could swing wildly), and a bit in company shares (grows if the businesses do). Spreading value across different types previews an idea called <span class="term" data-t="diversification">diversification</span> — you'll meet it properly later.</div>
+    <a class="next" href="index.html">Next → Lesson 3: Stocks (with the Buy-a-Slice sandbox)</a>
+  </section>
+
+  <div class="foot">Educational only — not financial advice, and not a recommendation to buy any specific asset (including crypto). All examples are illustrative.</div>
+</div>
+
+<div id="pop"><span class="x" onclick="hidePop()">×</span><h4 id="popT"></h4><div class="d" id="popD"></div><div class="pl" id="popP"></div></div>
+<script>
+const GLOSS={
+ "store of value":{d:"Anywhere you park worth expecting to get it back later.",p:"Put value in now, pull value out later — gold, a house, a share of a company."},
+ "precious metals":{d:"Rare physical metals like gold and silver used to hold value.",p:"Scarce and durable, but they don't grow or pay you anything."},
+ "commodity":{d:"A basic raw material that's the same no matter who produces it.",p:"Oil, wheat, copper. A barrel of oil is a barrel of oil."},
+ "real estate":{d:"Land and the buildings on it.",p:"Can grow in value AND earn rent — but it's pricey and slow to sell."},
+ "liquidity":{d:"How quickly something can be turned into cash without losing value.",p:"Cash is very liquid; a house is not — selling it takes time."},
+ "cryptocurrency":{d:"Digital money on computer networks, not issued by a government.",p:"Bitcoin is the best known. Scarce and digital, but high-risk and volatile."},
+ "volatility":{d:"How much and how fast a price swings up and down.",p:"High volatility = big, fast moves. Crypto is famous for it."},
+ "diversification":{d:"Spreading your money across different things to lower risk.",p:"Don't put it all in one place — if one drops, the others cushion it. More on this later."}
+};
+const pop=document.getElementById("pop");
+document.addEventListener("click",e=>{const t=e.target.closest(".term");
+ if(t){const g=GLOSS[t.dataset.t.toLowerCase()];if(g){
+   document.getElementById("popT").textContent=t.textContent;
+   document.getElementById("popD").textContent=g.d;
+   document.getElementById("popP").textContent="In plain terms: "+g.p;
+   pop.style.display="block";const r=t.getBoundingClientRect();
+   let top=r.bottom+window.scrollY+8,left=r.left+window.scrollX;
+   left=Math.min(left,window.scrollX+window.innerWidth-320);
+   pop.style.top=top+"px";pop.style.left=Math.max(10,left)+"px";e.stopPropagation();return;}}
+ if(!e.target.closest("#pop"))hidePop();});
+function hidePop(){pop.style.display="none";}
+</script>
+</body>
+</html>
